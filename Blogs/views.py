@@ -10,3 +10,12 @@ def getBlogs(request):
     except Exception as e:
         context = {'error':str(e)}
         return render(request, 'Blogs/error.html', context)
+
+def getBlog(request, pk):
+    try:
+        blog = Blog.objects.get(id=pk)
+        context = {'blog':blog}
+        return render(request, 'Blogs/blog.html', context)
+    except Exception as e:
+        context = {'error':str(e)}
+        return render(request, 'Blogs/error.html', context)

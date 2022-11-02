@@ -2,3 +2,20 @@
 {% block title %}
 Vaibhav's Blogs
 {% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="h1 text-dark p-3">List of Blogs</h1>
+    {% for blog in blogs %}
+    <div class="card m-3">
+        <div class="card-header">
+        {{blog.date}}
+        </div>
+        <div class="card-body">
+        <h5 class="card-title">{{blog.title}}</h5>
+        <p class="card-text">{{blog.content | truncatechars:109 | safe}}</p>
+        <a href="{% url 'get_blog' blog.id %}" class="btn btn-primary">Read More</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
