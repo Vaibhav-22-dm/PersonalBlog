@@ -8,4 +8,5 @@ def getBlogs(request):
         context = {'blogs':blogs}
         return render(request, 'Blogs/index.html', context)
     except Exception as e:
-        return render(request, 'Blogs/error.html')
+        context = {'error':str(e)}
+        return render(request, 'Blogs/error.html', context)
