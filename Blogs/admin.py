@@ -6,9 +6,9 @@ from .models import *
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
     list_display = ('title',)
-    
+
     def get_form(self, request, obj=None, **kwargs):
-        if not request.user.is_superuser:
+        if request.user.is_superuser == False:
             self.exclude = ("author", )
         form = super(BlogAdmin, self).get_form(request, obj, **kwargs)
         return form
@@ -18,3 +18,7 @@ class BlogAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         return qs.filter(author=request.user)
+
+    def save_model(self, request, obj, form, change):
+        obj.author = request.user
+        obj.save()
