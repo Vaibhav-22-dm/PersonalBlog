@@ -4,7 +4,7 @@ from .models import *
 
 def getBlogs(request):
     try:
-        blogs = Blog.objects.all().order_by('date')
+        blogs = Blog.objects.all().order_by('-date')
         context = {'blogs':blogs}
         return render(request, 'Blogs/index.html', context)
     except Exception as e:
