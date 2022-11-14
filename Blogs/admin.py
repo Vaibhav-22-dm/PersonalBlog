@@ -20,5 +20,6 @@ class BlogAdmin(admin.ModelAdmin):
         return qs.filter(author=request.user)
 
     def save_model(self, request, obj, form, change):
-        obj.author = request.user
+        if request.user.is_superuser == False:
+            obj.author = request.user
         obj.save()
