@@ -34,7 +34,7 @@ def userRegister(request):
                 context["message"]="Registration successful"
                 return redirect("../../blogs/getblogs/")
             else:
-                print("Reached", form.errors)
+                print(form.errors)
                 context["form_errors"]=form.errors
         form = UserRegistrationForm()
         context["register_form"] = form

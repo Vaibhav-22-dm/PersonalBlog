@@ -12,16 +12,17 @@ def getBlogs(request):
         return render(request, 'Blogs/index.html', context)
     except Exception as e:
         context = {'error':str(e)}
-        return render(request, 'Blogs/error.html', context)
+        return render(request, 'error.html', context)
 
 def getBlog(request, pk):
     try:
+        print(pk)
         blog = Blog.objects.get(id=pk)
         context = {'blog':blog}
         return render(request, 'Blogs/blog.html', context)
     except Exception as e:
         context = {'error':str(e)}
-        return render(request, 'Blogs/error.html', context)
+        return render(request, 'error.html', context)
 
 
 @login_required
@@ -32,7 +33,7 @@ def getMyBlogs(request):
         return render(request, 'Blogs/index.html', context)
     except Exception as e:
         context = {'error':str(e)}
-        return render(request, 'Blogs/error.html', context)
+        return render(request, 'error.html', context)
 
 @login_required
 def addBlog(request):
