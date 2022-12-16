@@ -34,13 +34,14 @@ def userRegister(request):
                 context["message"]="Registration successful"
                 return redirect("../../blogs/getblogs/")
             else:
-                print("Reached", form.errors)
+                # print("Reached", form.errors)
                 context["form_errors"]=form.errors
         form = UserRegistrationForm()
         context["register_form"] = form
         return render (request, "Users/register.html", context)
     except Exception as e:
-        return HttpResponse(str(e))
+        # print('Reached in Exception')
+        return HttpResponse(str(e), status=404)
 
 def userLogout(request):
     try:
