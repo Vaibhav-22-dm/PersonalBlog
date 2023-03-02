@@ -100,11 +100,11 @@ DATABASES={
     },
     'postgres_db':{
       'ENGINE':'django.db.backends.postgresql_psycopg2',
-      'NAME':'personalblogs',
-      'USER':'postgres',
-      'PASSWORD':'personalblogsvaibhav',
-      'HOST':'database-1.cq2ximuorhpd.ap-south-1.rds.amazonaws.com',
-      'PORT':'5432',
+      'NAME':'Enter name',
+      'USER':'Enter username',
+      'PASSWORD':'Enter password',
+      'HOST':'Enter Host Name',
+      'PORT':'Enter port',
    },
 }
 
