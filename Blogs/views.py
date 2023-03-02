@@ -12,7 +12,7 @@ def getBlogs(request):
         return render(request, 'Blogs/index.html', context)
     except Exception as e:
         context = {'error':str(e)}
-        return render(request, 'error.html', context)
+        return render(request, 'Users/error.html', context)
 
 def getBlog(request, pk):
     try:
@@ -22,7 +22,7 @@ def getBlog(request, pk):
         return render(request, 'Blogs/blog.html', context)
     except Exception as e:
         context = {'error':str(e)}
-        return render(request, 'error.html', context)
+        return render(request, 'Users/error.html', context)
 
 
 @login_required
@@ -33,7 +33,7 @@ def getMyBlogs(request):
         return render(request, 'Blogs/index.html', context)
     except Exception as e:
         context = {'error':str(e)}
-        return render(request, 'error.html', context)
+        return render(request, 'Users/error.html', context)
 
 @login_required
 def addBlog(request):
@@ -55,5 +55,5 @@ def addBlog(request):
         return render (request, "Blogs/create.html", context)
     except Exception as e:
         context = {'error':str(e)}
-        return render(request, 'error.html', context)
+        return render(request, 'Users/error.html', context)
     

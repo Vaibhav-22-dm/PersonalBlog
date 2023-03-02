@@ -97,7 +97,15 @@ DATABASES={
    'default':{
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'postgres_db':{
+      'ENGINE':'django.db.backends.postgresql_psycopg2',
+      'NAME':'personalblogs',
+      'USER':'postgres',
+      'PASSWORD':'personalblogsvaibhav',
+      'HOST':'database-1.cq2ximuorhpd.ap-south-1.rds.amazonaws.com',
+      'PORT':'5432',
+   },
 }
 
 
