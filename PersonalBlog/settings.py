@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q$vw=%#y*&j#!*qlsp51v7s8#z==uwfz-c+-3o1tu93!c(#6!4'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'Blogs',
     'Users',
+    'storages',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -100,11 +102,11 @@ DATABASES={
     },
     'postgres_db':{
       'ENGINE':'django.db.backends.postgresql_psycopg2',
-      'NAME':'Enter name',
-      'USER':'Enter username',
-      'PASSWORD':'Enter password',
-      'HOST':'Enter Host Name',
-      'PORT':'Enter port',
+      'NAME': os.environ['DB_NAME'],
+      'USER':os.environ['DB_USER'],
+      'PASSWORD':os.environ['DB_PASSWORD'],
+      'HOST':os.environ['DB_HOST'],
+      'PORT':os.environ['DB_PORT'],
    },
 }
 
@@ -142,11 +144,23 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-import os 
+
+# AWS Configs
+
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+AWS_S3_CUSTOM_DOMAIN = os.environ['AWS_S3_CUSTOM_DOMAIN']
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 MEDIA_URL = '/images/'
 
