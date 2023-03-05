@@ -6,7 +6,7 @@ env:
   EB_APPLICATION_NAME: "PersonalBlog"
   EB_ENVIRONMENT_NAME: "Personalblog-env"
   DEPLOY_PACKAGE_NAME: "django-app-${{ github.sha }}.zip"
-  AWS_REGION_NAME: "ap-south-1"
+  AWS_REGION_NAME: ap-south-1
 
 on:
   push:
