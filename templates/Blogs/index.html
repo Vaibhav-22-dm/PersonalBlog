@@ -13,7 +13,7 @@ Vaibhav's Blogs
         <h5 class="card-title">{{blog.title}}</h5>
         <p class="card-text">{{blog.content | truncatechars:109 | safe}}</p>
         <p>~ {{blog.author.username}}</p>
-        <a href="{% url 'get_blog' blog.id %}" class="btn btn-success">Read More</a>
+        <a href="{% url 'get_blog' blog.id %}" class="btn btn-warning">Read More</a>
         </div>
     </div>
     {% endfor %}
