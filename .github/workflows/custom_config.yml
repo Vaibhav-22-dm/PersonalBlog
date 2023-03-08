@@ -2,9 +2,9 @@
 
 name: CI-CD pipeline to AWS
 env:
-  EB_S3_BUCKET_NAME: "personalblogs-static"
-  EB_APPLICATION_NAME: "PersonalBlog"
-  EB_ENVIRONMENT_NAME: "Personalblog-env"
+  EB_S3_BUCKET_NAME: "blogs-bucket-vaibhav"
+  EB_APPLICATION_NAME: "blogs-eb"
+  EB_ENVIRONMENT_NAME: "Blogseb-env"
   DEPLOY_PACKAGE_NAME: "django-app-${{ github.sha }}.zip"
   AWS_REGION_NAME: "ap-south-1"
   AWS_S3_CUSTOM_DOMAIN: ${{ secrets.AWS_S3_CUSTOM_DOMAIN }}
