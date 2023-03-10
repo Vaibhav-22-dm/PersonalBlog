@@ -10,11 +10,11 @@ env:
   AWS_S3_CUSTOM_DOMAIN: ${{ secrets.AWS_S3_CUSTOM_DOMAIN }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_STORAGE_BUCKET_NAME: ${{ secrets.AWS_STORAGE_BUCKET_NAME }}
-  DB_HOST: ${{ secrets.DB_HOST }}
-  DB_NAME: ${{ secrets.DB_NAME }}
-  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-  DB_PORT: ${{ secrets.DB_PORT }}
-  DB_USER: ${{ secrets.DB_USER }}
+  RDS_HOSTNAME: ${{ secrets.DB_HOST }}
+  RDS_DB_NAME: ${{ secrets.DB_NAME }}
+  RDS_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  RDS_PORT: ${{ secrets.DB_PORT }}
+  RDS_USERNAME: ${{ secrets.DB_USER }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
  
 on:
