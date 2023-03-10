@@ -87,6 +87,8 @@ WSGI_APPLICATION = 'PersonalBlog.wsgi.application'
 #     }
 # }
 
+print(os.environ.get('DB_NAME'))
+
 DATABASES={
 #    'default':{
 #       'ENGINE':'django.db.backends.postgresql_psycopg2',
