@@ -1,27 +1,29 @@
 {% extends "base.html" %}
- 
 
-{% block content %}        
+{% block head %}
+{{ creation_form.media }}
+{% endblock %}
+
+{% block content %}
 
 <style>
     .controls {
         padding-bottom: 20px;
     }
 
-    .control-label{
+    .control-label {
         padding-bottom: 10px;
     }
-
 </style>
-{% load crispy_forms_tags %} 
+{% load crispy_forms_tags %}
 
-<!--Register--> 
+<!--Register-->
 <div class="container my-3 py-3" style="max-width:1000px">
     <form class="p-3 border border-primary rounded" method="post">
         {% csrf_token %}
         <h2 class="text-center">Create Blog</h2>
         {{ creation_form|crispy }}
-        
+
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
     </form>

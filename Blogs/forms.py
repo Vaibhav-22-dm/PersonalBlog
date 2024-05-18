@@ -1,11 +1,16 @@
 from django.forms import ModelForm
-from django import forms
-from .models import Blog
+from .models import *
+from tinymce.widgets import TinyMCE
 
 class BlogCreationForm(ModelForm):
-    title = forms.CharField(widget=forms.Textarea, required=True)
-    content = forms.CharField(widget=forms.Textarea, required=True)
 
     class Meta:
         model = Blog
         exclude = ['author']
+        widgets = {'content': TinyMCE(attrs={'cols': 80, 'rows': 30})}
+
+
+class CommentCreationForm(ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ['author', 'blog', 'reply']

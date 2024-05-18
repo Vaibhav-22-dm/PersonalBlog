@@ -5,22 +5,26 @@ Vaibhav's Blogs
 {% block content %}
 <div class="container">
     <h1 class="h1 text-dark p-3">List of Blogs</h1>
-    {% if blogs|length > 0 %}
+    <form method="post" class="p-3">
+        {% csrf_token %}
+        <div class="form-group py-3">
+            <label for="query" class="py-2">Search using Natural Language</label>
+            <input type="text" id="query" name="query" class="form-control" placeholder="Search">
+        </div>
+        <button class="btn btn-success">Search</button>
+    </form>
     {% for blog in blogs %}
     <div class="card m-3">
         <div class="card-header">{{blog.date}}</div>
         <div class="card-body">
-        <h5 class="card-title">{{blog.title}}</h5>
-        <p class="card-text">{{blog.content | truncatechars:109 | safe}}</p>
-        <p>~ {{blog.author.username}}</p>
-        <a href="{% url 'get_blog' blog.id %}" class="btn btn-warning">Read More</a>
+            <h5 class="card-title">{{blog.title}}</h5>
+            <div class="card-text">
+                {{ blog.summary }}
+            </div>
+            <p><i>~ {{blog.author.username}}</i></p>
+            <a href="{% url 'get_blog' blog.id %}" class="btn btn-primary">Read More</a>
         </div>
     </div>
     {% endfor %}
-    {% else %}
-    <div class="card m-3">
-        <div class="alert">Sorry, There are no blogs added yet.</div>
-    </div>
-    {% endif %} 
 </div>
 {% endblock %}

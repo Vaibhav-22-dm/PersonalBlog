@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Blogs',
     'Users',
     'storages',
+    'tinymce',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -80,15 +82,6 @@ WSGI_APPLICATION = 'PersonalBlog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-print(os.environ.get('RDS_DB_NAME'))
-
 DATABASES={
 #    'default':{
 #       'ENGINE':'django.db.backends.postgresql_psycopg2',
@@ -98,18 +91,18 @@ DATABASES={
 #       'HOST':'localhost',
 #       'PORT':'5432',
 #    },
-#    'default':{
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     },
-    'default':{
-      'ENGINE':'django.db.backends.postgresql_psycopg2',
-      'NAME': os.environ.get('RDS_DB_NAME'),
-      'USER':os.environ.get('RDS_USERNAME'),
-      'PASSWORD':os.environ.get('RDS_PASSWORD'),
-      'HOST':os.environ.get('RDS_HOSTNAME'),
-      'PORT':os.environ.get('RDS_PORT'),
-   },
+   'default':{
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+#     'default':{
+#       'ENGINE':'django.db.backends.postgresql_psycopg2',
+#       'NAME': os.environ.get('RDS_DB_NAME'),
+#       'USER':os.environ.get('RDS_USERNAME'),
+#       'PASSWORD':os.environ.get('RDS_PASSWORD'),
+#       'HOST':os.environ.get('RDS_HOSTNAME'),
+#       'PORT':os.environ.get('RDS_PORT'),
+#    },
 }
 
 
@@ -149,29 +142,43 @@ USE_TZ = True
 
 # AWS Configs
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_CUSTOM_DOMAIN = os.environ.get('AWS_S3_CUSTOM_DOMAIN')
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_LOCATION = 'static'
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+# AWS_S3_CUSTOM_DOMAIN = os.environ.get('AWS_S3_CUSTOM_DOMAIN')
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
+# AWS_LOCATION = 'static'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# STATIC_URL = 'static/'
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# # STATIC_URL = 'static/'
+# # STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-MEDIA_URL = '/images/'
+# MEDIA_URL = '/images/'
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static')
+# ]
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+# # Default primary key field type
+# # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+import os 
+
+STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
